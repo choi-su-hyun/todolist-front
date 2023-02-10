@@ -172,22 +172,31 @@ export default {
 			this.$router.push('/login');
 			console.log(userData);
 		},
+		// passwordValidationFailed(message) {
+		// 	// 패스워드
+		// },
+		idValidationFailed(message) {
+			this.canUse = false;
+			this.cannotUse = true;
+			this.CanUseMessage = message;
+		},
+		IdValidationSuccess(message) {
+			this.canUse = true;
+			this.cannotUse = false;
+			this.CanUseMessage = message;
+		},
 		async idCheckForm() {
-			const idData = {
-				checkingId: this.user_id,
-			};
-			let { data } = await idCheck(idData);
+			const loginId = { checkingId: this.user_id };
+			// await idCheck(loginId);
+			console.log(await idCheck(loginId));
 
-			if (data === 'Can use') {
-				this.canUse = true;
-				this.cannotUse = false;
-				this.CanUseMessage = '사용 가능한 아이디입니다.';
+			const idChecked = await idCheck(loginId);
+			if (idChecked.success) {
+				this.IdValidationSuccess(idChecked.message);
+				this.idChecked = true;
 			} else {
-				this.canUse = false;
-				this.cannotUse = true;
-				this.CanUseMessage = '이미 사용중인 아이디입니다.';
+				this.idValidationFailed(idChecked.message);
 			}
-			this.idChecked = true;
 		},
 		inputIdChecking() {
 			this.idChecked = false;

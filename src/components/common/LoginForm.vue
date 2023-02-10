@@ -26,7 +26,6 @@
 
 <script>
 import { loginUser } from '@/api/auth';
-import { setCookie } from '@/utils/cookie';
 
 export default {
 	data() {
@@ -41,30 +40,19 @@ export default {
 	},
 	methods: {
 		async loginForm() {
-			try {
-				const userData = {
-					user_id: this.user_id,
-					password: this.password,
-				};
-				let { data } = await loginUser(userData);
-				this.$store.state.userName = data.user.name;
-				this.$store.state.token = data.authorization.token;
-				// console.log(data);
-				setCookie('userName', data.user.name);
-				setCookie('token', data.authorization.token);
+			const userData = {
+				user_id: this.user_id,
+				password: this.password,
+			};
+			const loginResult = await loginUser(userData);
+			console.log(loginResult);
+			if (loginResult.successStatus) {
 				this.$router.push('/list');
-			} catch (err) {
-				console.log(err);
-				if (err.response.data === 'Password is unvalid') {
-					this.logMessageToggle = true;
-					this.logMessage = '아이디와 비밀번호가 일치하지 않습니다.';
-				} else if (err.response.data === 'This id is not found') {
-					this.logMessageToggle = true;
-					this.logMessage = '존재하지 않는 아이디입니다.';
-				}
-			} finally {
-				this.initForm();
+			} else {
+				this.logMessageToggle = true;
+				this.logMessage = loginResult.message;
 			}
+			this.initForm();
 		},
 		initForm() {
 			this.user_id = '';
