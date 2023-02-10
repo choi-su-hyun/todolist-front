@@ -5,15 +5,15 @@ module.exports = defineConfig({
 		client: {
 			overlay: false,
 		},
-		proxy: {
-			'/api': {
-				target: 'http://localhost:3000/api',
-				changeOrigin: true,
-				pathRewrite: {
-					'^/api': '',
-				},
-			},
-		},
+		// proxy: {
+		// 	'/api': {
+		// 		target: 'http://localhost:3000/api',
+		// 		changeOrigin: true,
+		// 		pathRewrite: {
+		// 			'^/api': '',
+		// 		},
+		// 	},
+		// },
 	},
-	outputDir: '../todo-server/todo-server/public',
+	outputDir: '../todolist-back/public',
 });
