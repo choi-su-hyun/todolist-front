@@ -108,13 +108,13 @@ export default {
 		async getListStart() {
 			this.isLoading = true;
 			let { data } = await getList();
-			// console.log('get list', data);
+			console.log('get list', data.contents);
 			// console.log('data.todoData', data.todoData);
 			// console.log('data.todoData.length', data.todoData.length);
-			this.userName = data.userName;
+			this.userName = this.$store.state.nickName;
 			this.isLoading = false;
-			if (data.todoData.length) {
-				this.postItems = data.todoData;
+			if (data.contents.length) {
+				this.postItems = data.contents;
 				this.isDatas = true;
 			} else {
 				this.isDatas = false;

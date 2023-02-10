@@ -36,10 +36,10 @@ export default {
 	},
 	methods: {
 		logout() {
-			this.$store.state.userName = '';
+			this.$store.state.nickName = '';
 			this.$store.state.token = '';
 			deleteCookie('token');
-			deleteCookie('userName');
+			deleteCookie('nickName');
 			this.$router.push('/welcome').catch(() => {});
 		},
 	},
