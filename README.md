@@ -1,4 +1,4 @@
-# todo-list
+# todo-list - Front
 
 ## Project setup
 ```
