@@ -12,12 +12,12 @@ function getPost(todoId) {
 
 // 수정하기
 function editTodo(todoId, editData) {
-	return post.put(`/post/edit/${todoId}/update_process`, editData);
+	return post.put(`/post/edit/${todoId}/update-process`, editData);
 }
 
 // 생성
 function createTodo(todo) {
-	return post.post('/post/create_process', todo);
+	return post.post('/post/create-process', todo);
 }
 
 // 글 삭제
