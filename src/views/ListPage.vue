@@ -44,6 +44,11 @@
 				<NotDatas></NotDatas>
 			</template>
 		</template>
+		<div class="btn-wrapper--center">
+			<router-link class="block-btn--circle-cta have-icon" to="/create">
+				<img class="btn-icon" src="@/assets/plus-btn.svg" alt="" />
+			</router-link>
+		</div>
 		<div class="popup" v-show="deleteAlert">
 			<div class="popup__back" @click="deletePopupClose"></div>
 			<div class="popup__content">
@@ -53,17 +58,17 @@
 					삭제하시겠습니까?
 				</p>
 				<div class="popup__btn-wrap">
-					<button class="block-btn--cancel" @click="deletePopupClose">
+					<button
+						class="block-btn--cancel block-btn--md-cta"
+						@click="deletePopupClose"
+					>
 						취소
 					</button>
-					<button class="block-btn--cta" @click="goDelete">삭제</button>
+					<button class="block-btn--cta block-btn--md-cta" @click="goDelete">
+						삭제
+					</button>
 				</div>
 			</div>
-		</div>
-		<div class="btn-wrapper--center">
-			<router-link class="block-btn--circle-cta have-icon" to="/create">
-				<img class="btn-icon" src="@/assets/plus-btn.svg" alt="" />
-			</router-link>
 		</div>
 	</div>
 </template>
@@ -132,14 +137,17 @@ export default {
 			this.deleteAlert = true;
 			this.todoTitle = data.deleteData.title;
 			this.todoId = data.deleteData.id;
+			document.body.classList.add('block-scroll');
 		},
 		deletePopupClose() {
 			this.deleteAlert = false;
+			document.body.classList.remove('block-scroll');
 		},
 		async goDelete() {
 			await deleteTodo(this.todoId);
 			this.getListStart();
 			this.deleteAlert = false;
+			document.body.classList.remove('block-scroll');
 			// this.deleteDataInit();
 		},
 		deleteDataInit() {
@@ -198,13 +206,16 @@ export default {
 	justify-content: center;
 	margin: 48px 0 240px;
 }
+.block-scroll {
+	overflow: hidden;
+}
 .popup {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
-	/* z-index: 10; */
+	z-index: 10;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -237,7 +248,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	gap: 24px;
-	margin-top: 40px;
+	margin-top: 24px;
 }
 .popup__btn-wrap button {
 	width: 100%;

@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Pretendard-Regular';
 }
 
 /* 
@@ -133,6 +134,9 @@ a {
     font-size: 16px;
 }
 .block-btn--cta.block-btn--md-cta {
+    padding: 8px 16px;
+}
+.block-btn--cancel.block-btn--md-cta {
     padding: 8px 16px;
 }
 .block-btn--circle-cta {
