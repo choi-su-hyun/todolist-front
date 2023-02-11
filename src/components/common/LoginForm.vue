@@ -21,6 +21,12 @@
 		>
 			로그인 하기
 		</button>
+		<div class="login-page__bottom-wrap">
+			<span class="login-page__bottom-text">회원이 아니신가요? </span
+			><router-link to="/signup" class="login-page__bottom-btn"
+				>회원가입</router-link
+			>
+		</div>
 	</form>
 </template>
 
@@ -72,6 +78,17 @@ export default {
 }
 .login-form .input {
 	width: 100%;
+}
+.login-page__bottom-text {
+	color: var(--cool-gray700);
+	font-size: 16px;
+}
+.login-page__bottom-btn {
+	color: var(--blue-color);
+	text-decoration: underline;
+}
+.login-page__bottom-wrap {
+	text-align: center;
 }
 @media screen and (max-width: 767px) {
 	.login-form {
