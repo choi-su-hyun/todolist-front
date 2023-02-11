@@ -88,8 +88,8 @@ export default {
 		async editStart() {
 			let { data } = await getPost(this.$route.params.id);
 			console.log(data);
-			this.todoTitle = data.row[0].title;
-			this.todoDetail = data.row[0].paragraph;
+			this.todoTitle = data.updateData.title;
+			this.todoDetail = data.updateData.paragraph;
 		},
 		doTitleCheck() {
 			if (this.todoTitle === '') {
